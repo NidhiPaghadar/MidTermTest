@@ -58,7 +58,7 @@ book.create(newBook, (err, item) =>{
     {
         // refresh the book list
         console.log(item);
-        res.redirect('books/index');
+        res.redirect('/books');
     }
 });
 
@@ -87,18 +87,16 @@ router.get('/:id', (req, res, next) => {
 
 // POST - process the information passed from the details form and update the document
 router.post('/:id', (req, res, next) => {
-
   let id = req.params.id
     
   let updatedBook = book({
+    _id: req.body.id,
     Title: req.body.title,
     Description: req.body.description,
     Price: req.body.price,
     Author: req.body.author,
     Genre: req.body.genre
   });
-
-  
 
   book.updateOne({_id: id}, updatedBook, (err) => {
       if(err)
@@ -109,7 +107,7 @@ router.post('/:id', (req, res, next) => {
       else
       {
 
-          res.redirect('books/index');
+          res.redirect('/books');
       }
   });
 
@@ -128,7 +126,7 @@ router.get('/delete/:id', (req, res, next) => {
       }
       else
       {
-          res.redirect('books/index');
+          res.redirect('/books');
       }
   });
 });
