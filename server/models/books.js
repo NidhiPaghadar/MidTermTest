@@ -2,14 +2,30 @@ let mongoose = require('mongoose');
 
 // create a model class
 let Book = mongoose.Schema({
-    Title: String,
-    Description: String,
-    Price: Number,
-    Author: String,
-    Genre: String
+
+    Title: {
+          type: String,
+          require: true
+    },
+    Description: {
+          type:String,
+          require: true,
+    },
+    Price: {
+          type:Number,
+          require: true,
+    },
+    Author: {
+          type:String,
+          require: true,
+    },
+    Genre: {
+          type:String, 
+          require: true
+    }
 },
 {
   collection: "books"
 });
 
-module.exports = mongoose.model('Book', Book);
+module.exports = mongoose.model('books', Book);
